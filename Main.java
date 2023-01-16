@@ -24,7 +24,6 @@ public class Main {
 					cpf = s.nextLine();
 					Cliente cliente = new Cliente(name, cpf);
 					clientes.add(cliente);
-					System.out.println(name);
 					break;
 				case 2:
 					System.out.println("Digite o cpf do cliente para remover:");
@@ -35,6 +34,7 @@ public class Main {
 				case 3:
 					System.out.println("Fim");
 					return;
+
 				default:
 					break;
 			}
@@ -44,5 +44,15 @@ public class Main {
 
 	private static void removerCliente(String cpf){
 		clientes.removeIf(item -> item.getCpf().compareTo(cpf) == 0);
+	}
+
+	private static Cliente findCliente(String cpf){
+		for (Cliente cliente : clientes) {
+			if(cliente .getCpf().compareTo(cpf) == 0){
+				return cliente;
+			}
+		}
+
+		return null;
 	}
 }
