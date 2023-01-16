@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Cliente.Cliente;
+import Conta.Conta;
 
 
 public class Main {
@@ -9,7 +10,8 @@ public class Main {
 	private static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
 	public static void main(String[] args) {
-		Menu mainMenu =  new Menu("Menu Principal", Arrays.asList("Adicionar Cliente", "Remover Cliente", "Sair"));
+		Menu mainMenu =  new Menu("Menu Principal", 
+			Arrays.asList("Adicionar Cliente", "Criar Conta", "Remover Cliente", "Sair"));
 		
 		Scanner s = new Scanner(System.in);
 		String cpf;
@@ -28,10 +30,18 @@ public class Main {
 				case 2:
 					System.out.println("Digite o cpf do cliente para remover:");
 					cpf = s.nextLine();
+					System.out.println("Digite o limite de crédito da conta:");
+					Double limite = s.nextDouble();
+					Cliente c = findCliente(cpf);
+					c.setConta(new Conta(limite));
+					break;
+				case 3:
+					System.out.println("Digite o cpf do cliente para remover:");
+					cpf = s.nextLine();
 
 					removerCliente(cpf);
 					break;
-				case 3:
+				case 4:
 					System.out.println("Fim");
 					return;
 

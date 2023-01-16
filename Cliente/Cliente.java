@@ -1,11 +1,10 @@
 package Cliente;
-import java.util.ArrayList;
 import Conta.Conta;
 
 public class Cliente {
     private String nome;
     private String cpf;
-    private ArrayList<Conta> contas = new ArrayList<Conta>();
+    private Conta conta;
 
     public Cliente(String nome, String cpf) {
         this.nome = nome;
@@ -20,8 +19,12 @@ public class Cliente {
         return cpf;
     }
 
-    public void addConta(Conta conta){
-        contas.add(conta);
+    public void setConta(Conta conta){
+        this.conta = conta;
+    }
+    
+    public Conta getConta() {
+        return conta;
     }
 
 }
