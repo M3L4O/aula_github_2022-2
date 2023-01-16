@@ -14,7 +14,7 @@ public class Conta {
     }
     
     public boolean sacar(double qte) {
-        if(saldo - qte < limite) return false;
+        if(saldo + qte > limite) return false;
         else return true;
     }
 }

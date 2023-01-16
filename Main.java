@@ -11,10 +11,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		Menu mainMenu =  new Menu("Menu Principal", 
-			Arrays.asList("Adicionar Cliente", "Criar Conta", "Remover Cliente", "Sair"));
+			Arrays.asList("Adicionar Cliente", "Criar Conta", "Remover Cliente","Sacar", "Sair"));
 		
 		Scanner s = new Scanner(System.in);
 		String cpf;
+		Cliente cliente;
 
 		while(true) {
 
@@ -24,24 +25,42 @@ public class Main {
 					String name = s.nextLine();
 					System.out.println("Digite o seu cpf:");
 					cpf = s.nextLine();
-					Cliente cliente = new Cliente(name, cpf);
+					cliente = new Cliente(name, cpf);
 					clientes.add(cliente);
 					break;
 				case 2:
-					System.out.println("Digite o cpf do cliente para remover:");
+					System.out.println("Digite o cpf do cliente para criar a conta:");
 					cpf = s.nextLine();
 					System.out.println("Digite o limite de crédito da conta:");
 					Double limite = s.nextDouble();
-					Cliente c = findCliente(cpf);
-					c.setConta(new Conta(limite));
+					s.nextLine();
+					cliente = findCliente(cpf);
+					cliente.setConta(new Conta(limite));
 					break;
+
 				case 3:
 					System.out.println("Digite o cpf do cliente para remover:");
 					cpf = s.nextLine();
-
 					removerCliente(cpf);
 					break;
+
 				case 4:
+					System.out.println("Digite o seu CPF");
+					cpf = s.nextLine();
+					cliente = findCliente(cpf);
+					if(cliente == null){
+						System.out.println("Não foi possivel achar o cliente.");
+					}
+					Conta conta = cliente.getConta();
+					System.out.println("Digite o quanto quer sacar:");
+					Double valor = s.nextDouble();
+					Boolean resultado = conta.sacar(valor);
+					if (resultado){
+						System.out.println("Você conseguiu sacar: R$" + valor);
+					}else{
+						System.out.println("Voce não conseguiu sacar.");
+					}
+				case 5:
 					System.out.println("Fim");
 					return;
 
