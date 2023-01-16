@@ -1,16 +1,15 @@
 package Cliente;
-
+import java.util.ArrayList;
 import Conta.Conta;
 
 public class Cliente {
     private String nome;
     private String cpf;
-    private Conta conta;
+    private ArrayList<Conta> contas = new ArrayList<Conta>();
 
-    public Cliente(String nome, String cpf, double limite) {
+    public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
-        conta = new Conta(limite);
     }
 
     public String getNome() {
@@ -21,8 +20,9 @@ public class Cliente {
         return cpf;
     }
 
-    public Conta getConta(){
-        return conta;
+    public void addConta(Conta conta){
+        contas.add(conta);
     }
+
 }
 
