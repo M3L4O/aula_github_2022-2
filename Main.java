@@ -79,7 +79,9 @@ public class Main {
 					}
 
 				case 6:
-					//listar clientes
+					for (Cliente i : clientes) {
+						System.out.println ("Cliente:" + i.getNome() + "\n");
+					}
 
 				case 7:
 					System.out.println("Fim");
