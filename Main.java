@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Menu mainMenu =  new Menu("Menu Principal", 
-			Arrays.asList("Adicionar Cliente", "Criar Conta", "Remover Cliente","Sacar", "Sair"));
+			Arrays.asList("Adicionar Cliente", "Criar Conta", "Remover Cliente","Sacar", "Depositar", "Listar Clientes", "Sair"));
 		
 		Scanner s = new Scanner(System.in);
 		String cpf;
@@ -60,7 +60,28 @@ public class Main {
 					}else{
 						System.out.println("Voce não conseguiu sacar.");
 					}
+
 				case 5:
+					System.out.println("Digite o seu CPF");
+					cpf = s.nextLine();
+					cliente = findCliente(cpf);
+					if(cliente == null){
+						System.out.println("Não foi possivel achar o cliente.");
+					}
+					Conta conta = cliente.getConta();
+					System.out.println("Digite o quanto quer depositar:");
+					Double valor = s.nextDouble();
+					Boolean resultado = conta.depositar(valor);
+					if (resultado){
+						System.out.println("Você conseguiu depositar: R$" + valor);
+					}else{
+						System.out.println("Voce não conseguiu depositar.");
+					}
+
+				case 6:
+					//listar clientes
+
+				case 7:
 					System.out.println("Fim");
 					return;
 
